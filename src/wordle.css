@@ -1,0 +1,234 @@
+/* by Oruaroghene Mukoro */
+* {
+    --fSize: max(24px, 3vmin);
+    --sideLength: max(2rem, 10vmin);
+    --bradius: calc(0.04*var(--sideLength));
+    --scale: 1.1;
+    --gap: calc(0.1 * var(--sideLength));
+    margin: 0;
+    font-family: "JetBrains Mono", monospace;
+    font-size: var(--fSize);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+#flexWordle {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#flexWordle > * {
+    width: calc(5.4 * var(--sideLength));
+    margin-top: calc(0.1 * var(--sideLength));
+}
+
+#grid {
+    display: grid;
+    width: max-content;
+    grid-template-columns: repeat(5, auto);
+    background-color: transparent;
+}
+
+.textBox {
+    height: var(--sideLength);
+    width: var(--sideLength);
+    margin: calc(0.05*var(--sideLength));
+    border-radius: var(--bradius);
+    border: none;
+    background-color: whitesmoke;
+    box-sizing: border-box;
+    caret-color: transparent;
+}
+
+.textBox:focus {
+    position: relative;
+    font-size: calc(var(--scale)*var(--fSize));
+    background-color: whitesmoke; 
+    z-index: 100;
+    animation: wiggle;
+    animation-duration: 97ms;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    outline: none;
+    border: 0.05em solid black;
+}
+
+.textBox:disabled {
+    color: black
+}
+
+[correct]:not([correct=""]) {
+    transform: rotateY(360deg);
+    transition: all 2s ease-in-out;
+}
+
+[correct="1"] {
+    background-color: #BAE067;
+}
+
+[correct="0"] {
+    background-color: #FFDA54;
+}
+
+[correct="-1"] {
+    background-color: #C7BDB5;
+}
+
+[correct=""] {
+    background-color: whitesmoke;
+}
+
+.r1 {
+    margin-top: 0;
+}
+
+.c1 {
+    margin-left: 0;
+}
+
+.r6 {
+    margin-bottom: 0;
+}
+
+.c5 {
+    margin-right: 0;
+}
+
+#bFlex {
+    display: flex;
+    gap: var(--gap);
+}
+
+#bFlex > button {
+    flex: 1 1 auto;
+    position: relative;
+    border-radius: var(--bradius);
+    border: none;
+    padding: 0.4em 0;
+    overflow: hidden;
+}
+
+#bFlex > button > span {
+    position: relative;
+    z-index: 100;
+}
+
+#bFlex > button > p {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--bradius);
+    background-color:#a5e067;
+    transition: font-weight 97ms linear, transform 267ms ease-in-out;   
+}
+
+#bFlex > button:active > p {
+    background-color:#BAE067;
+}
+
+#bFlex > button:hover > span {
+    font-weight: 600;
+}
+
+#bFlex > button:hover > p {
+    transform: translateX(100%);
+}
+
+#message {
+    border-radius: var(--bradius);
+    background-color: wheat;
+    padding: 0.4em 0;
+    font-size: calc(0.85 * var(--fSize));
+}
+
+#message:hover {
+    font-weight: 500;
+}
+
+.alert {
+    animation-name: bounce;
+    animation-duration: 1.15s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease;
+}
+
+#alphabet {
+    --brA: calc(0.5 * var(--bradius));
+    --sL: calc(0.75 * var(--sideLength));
+    display: flex;
+    justify-content: space-between;
+    width: min-content;
+    max-width: calc(var(--sL)* 10.9);
+    overflow: hidden;
+    border-radius: var(--brA);
+    flex-direction: column;
+    gap: calc(0.1 * var(--sL));
+}
+
+.lettCont {
+    min-height: 0;
+    display: inline-flex;
+    justify-items: center;
+    align-items: flex-end;
+    border-radius: inherit;
+    gap: calc(0.1 * var(--sL)); 
+}
+
+.lettCont > p {
+    flex: 0 0 auto;
+    height: var(--sL);
+    width: var(--sL);
+    line-height: var(--sL);
+    border-radius: var(--brA) var(--brA) 0 0;
+    background-color: #BFC7C4;
+    list-style: none;
+    transition: all 267ms linear;
+}
+
+.lettCont > p:hover {
+    font-weight: 600;
+}
+
+#good {
+    justify-content: center;
+}
+
+#good p {
+    background-color: #dcdd5e;
+}
+
+#unused {
+    overflow-y: hidden;
+    border-radius: inherit;
+}
+
+#unused::-webkit-scrollbar {
+    height: 0.36ch;
+    background-color: transparent;
+}
+
+#unused:hover::-webkit-scrollbar-thumb {
+    background-color: rgb(235, 182, 96);
+    border-radius: var(--bradius);
+}
+
+@keyframes wiggle { 
+    25% { transform: rotateZ(6.5deg);}
+    37.5% { transform: rotateZ(3.5deg); }
+    50% { transform: rotateZ(1.5); }
+    67.5% {transform: rotateZ(0.5deg);}
+    75% { transform: rotateZ(0); }
+    to  { transform:scale(var(--scale));}
+}
+
+@keyframes bounce {
+    20%, 50%, 80%, 100%{transform: translateY(0);}
+	40% {transform: translateY(calc(-0.1 * var(--sideLength)));}
+	60% {transform: translateY(calc(-0.05  * var(--sideLength)));}
+}
+
+

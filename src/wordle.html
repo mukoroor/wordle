@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="wordle.css">
+    <title>wordle</title>
+</head>
+<body> 
+    <div id="flexWordle">
+        <div id="grid"></div>
+        <div id="message"></div>
+        <div id="bFlex">
+            <button type="button" onclick="startNewGame()" id="newGame"><p></p><span>NEW GAME</span></button>
+            <button type="button" onclick="playGame()" id="guess"><p></p><span>GUESS</span></button>
+        </div>
+        <div id="alphabet">
+            <div id="unused" class="lettCont"></div>
+            <div id="good" class="lettCont"></div>
+        </div>
+    </div>
+    <script src="../dist/Wordle.js"></script>                                                               
+</body>
+</html>
